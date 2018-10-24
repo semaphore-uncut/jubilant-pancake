@@ -8,11 +8,21 @@ agent:
 blocks:
   - name: Deploy
     task:
+      secrets:
+        - name: awscreds
       env_vars:
         - name: APP_ENV
           value: prod
       jobs:
       - name: deploy
+        commands:
+          - echo $AWSKEY
+          - checkout
+          - ls -1
+          - echo $APP_ENV
+          - echo "Docker build..."
+          - echo "done"
+      - name: deploy1
         commands:
           - checkout
           - ls -1
